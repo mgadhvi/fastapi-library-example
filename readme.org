@@ -1,16 +1,61 @@
-#+TITLE: Eco-Pulse: Frugal AI Sustainability Monitor
+#+TITLE: Simple FastAPI Library API
 #+AUTHOR: Manish Gadhvi
-#+OPTIONS: toc:nil num:nil
+#+OPTIONS: toc:2 num:nil
 
 * Overview
-This is a simple FastAPI application. It emulates a simple backend api that connects to a PostgreSQL database.
+This is a minimalist FastAPI backend designed to manage library records. It provides a RESTful interface and persists data using a PostgreSQL database.
 
-* Setup
-The program requires a PostgreSQL database to work. You can enter the connection string in a =.env= file. This should be in the root directory
+* Prerequisites
+- Python 3.8+
+- PostgreSQL
+- =pip= (latest version)
 
-#+begin_src
-//.env
-DATABASE_URL=YOUR_DATABASE_URS
+* Configuration
+The application uses environment variables for configuration. Create a file named =.env= in the root directory:
+
+#+begin_src shell
+DATABASE_URL=postgresql://user:password@localhost:5432/library_db
 #+end_src
 
-once this is done, you can use =python3 seed.py= to seed the database
+* Installation
+Follow these steps to prepare your local environment:
+
+** 1. Dependencies
+Update =pip= and install the required packages:
+#+begin_src shell
+python3 -m pip install --upgrade pip
+pip install -r requirements.txt
+#+end_src
+
+** 2. Database Seeding
+Initialize the PostgreSQL schema and populate the database with initial data:
+#+begin_src shell
+python3 seed.py
+#+end_src
+
+* API Endpoints
+
+** Authors
+| Method | Endpoint              | Description    |
+|--------+-----------------------+----------------|
+| POST   | /authors/             | Create Author  |
+| GET    | /authors/             | Read Authors   |
+| GET    | /authors/{author_id}  | Read Author    |
+
+** Books
+| Method | Endpoint              | Description    |
+|--------+-----------------------+----------------|
+| POST   | /books/               | Create Book    |
+| GET    | /books/               | Read Books     |
+| GET    | /books/{book_id}      | Read Book      |
+| PATCH  | /books/{book_id}      | Update Book    |
+| DELETE | /books/{book_id}      | Delete Book    |
+
+* Execution
+Launch the development server using the FastAPI CLI:
+
+#+begin_src shell
+fastapi dev
+#+end_src
+
+The API will be available at [[http://localhost:8000]]. You can access the auto-generated documentation (Swagger UI) at [[http://localhost:8000/docs]].
