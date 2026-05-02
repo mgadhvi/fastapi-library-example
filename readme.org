@@ -1,0 +1,16 @@
+#+TITLE: Eco-Pulse: Frugal AI Sustainability Monitor
+#+AUTHOR: Manish Gadhvi
+#+OPTIONS: toc:nil num:nil
+
+* Overview
+This is a simple FastAPI application. It emulates a simple backend api that connects to a PostgreSQL database.
+
+* Setup
+The program requires a PostgreSQL database to work. You can enter the connection string in a =.env= file. This should be in the root directory
+
+#+begin_src
+//.env
+DATABASE_URL=YOUR_DATABASE_URS
+#+end_src
+
+once this is done, you can use =python3 seed.py= to seed the database
