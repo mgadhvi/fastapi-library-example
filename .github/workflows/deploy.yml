@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+# Opt for the newer Node.js environment
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -18,6 +22,6 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            cd ~/library-project
+            cd ~/fastapi-library-example
             git pull origin main
             docker compose up -d --build
